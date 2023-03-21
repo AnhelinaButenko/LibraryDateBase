@@ -46,18 +46,67 @@ public class LibraryDbContext : DbContext
         modelBuilder.ApplyConfiguration(new StudentBookConfiguration());
         modelBuilder.ApplyConfiguration(new StudentConfiguration());
 
-        //modelBuilder.Entity<Client>().HasData(
-        //   new Client[]
-        //   {
-        //        new Client { ClientId=1, FirstName="Ivan", LastName="Ivanov", Firm="Samsung", DateOfBirth= new DateTime(2000, 12, 27)},
-        //        new Client { ClientId=2, FirstName="Alice", LastName="Petrova", Firm="Lenovo", DateOfBirth=new DateTime(1975, 03, 15)},
-        //   });
+        modelBuilder.Entity<Book>().HasData(
+           new Book[]
+           {
+                new Book { Id=1, Name="Day", DateOfPublication= new DateTime(2000, 11, 27), NumberOfPages=99, NumberOfIllustation=19},
+                new Book { Id=2, Name="Way", DateOfPublication= new DateTime(1975, 2, 25), NumberOfPages=123, NumberOfIllustation=32},
+           });
 
-        //modelBuilder.Entity<Project>().HasData(
-        //   new Project[]
-        //   {
-        //        new Project { ProjectId=1, ClientId=1, Name = "Creation of new models of gadgets", Budget = 56.500M, StartedDate = new DateTime(2023,02,16)},
-        //        new Project { ProjectId=2, ClientId=2, Name = "Creation of new system for work", Budget = 87.500M, StartedDate = new DateTime(2023,02,16)},
-        //   });
+        modelBuilder.Entity<Author>().HasData(
+            new Author[]
+            {
+                new Author { Id=1, FullName="Sagh Ghiny Deryo"},
+                new Author { Id=2, FullName="Duipky Dyrew Fewsi"},
+            });
+
+        modelBuilder.Entity<Library>().HasData(
+            new Library[]
+            {
+                new Library { Id=1, Name="Lonf"},
+                new Library { Id=2, Name="Dewsi"},
+            });
+
+        modelBuilder.Entity<Publisher>().HasData(
+           new Publisher[]
+           {
+                new Publisher { Id=1, Name="Daverim"},
+                new Publisher { Id=2, Name="Fokpit"},
+           });
+
+        modelBuilder.Entity<Faculty>().HasData(
+          new Faculty[]
+          {
+                new Faculty { Id=1, Name="History"},
+                new Faculty { Id=2, Name="Geography"},
+          });
+
+        modelBuilder.Entity<Student>().HasData(
+          new Student[]
+          {
+                new Student { Id=1, Name="Ivan", FacultyId=1},
+                new Student { Id=2, Name="Stepan", FacultyId=1},
+          });
+
+        modelBuilder.Entity<AuthorBook>().HasData(
+          new AuthorBook[]
+          {
+                new AuthorBook { Id=1, BookId=1, AuthorId=1, PublisherId=1},
+                new AuthorBook { Id=2, BookId=2, AuthorId=2, PublisherId=2},
+          });
+
+        modelBuilder.Entity<BookLibrary>().HasData(
+         new BookLibrary[]
+         {
+                new BookLibrary { Id=1, BookId=1, LibraryId=1, CountBook=4},
+                new BookLibrary { Id=2, BookId=2, LibraryId=2, CountBook=9},
+         });
+
+        modelBuilder.Entity<StudentBook>().HasData(
+         new StudentBook[]
+         {
+                new StudentBook { Id=1, BookId=1, StudentId=1 ,StartOfTake= new DateTime(2022, 1, 11), EndOfTake= new DateTime(2022, 2, 22)},
+                new StudentBook { Id=2, BookId=2, StudentId=2, StartOfTake= new DateTime(2021, 2, 14), EndOfTake= new DateTime(2022, 3, 11)},
+         });
     }
 }
