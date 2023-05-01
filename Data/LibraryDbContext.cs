@@ -18,16 +18,11 @@ public class LibraryDbContext : DbContext
     public DbSet<Student> Student { get; set; }
     public DbSet<StudentBook> StudentBook { get; set; }
 
-
     public LibraryDbContext(string connectionString = "Data Source=DESKTOP-DLBKOUP\\SQLEXPRESS; Initial Catalog =libraryContext; Integrated Security = True; TrustServerCertificate=True")
     {
         _connectionString = connectionString;
         //Database.EnsureCreated();
     }
-
-    //public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-    //{
-    //}
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -56,8 +51,8 @@ public class LibraryDbContext : DbContext
         modelBuilder.Entity<Author>().HasData(
             new Author[]
             {
-                new Author { Id=1, FullName="Sagh Ghiny Deryo"},
-                new Author { Id=2, FullName="Duipky Dyrew Fewsi"},
+                new Author { Id=1, FullName="Sagh Ghiny Deryo", CreatedDate=new DateTime(1560, 11, 14), ModifiedDate= DateTime.UtcNow},
+                new Author { Id=2, FullName="Duipky Dyrew Fewsi", CreatedDate=new DateTime(1896, 11, 19) ,ModifiedDate= DateTime.UtcNow},
             });
 
         modelBuilder.Entity<Library>().HasData(
