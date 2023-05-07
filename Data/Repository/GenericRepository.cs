@@ -35,13 +35,13 @@ public abstract class GenericRepository<T> : IGenericRepository<T>
         await LibraryDbContext.SaveChangesAsync();
     }
 
-    public async Task Remove(T entity)
+    public virtual async Task Remove(T entity)
     {
         LibraryDbContext.Set<T>().Remove(entity);
         await LibraryDbContext.SaveChangesAsync();
     }
 
-    public async Task<List<T>> GetAll()
+    public virtual async Task<List<T>> GetAll()
     {
         return await LibraryDbContext.Set<T>().AsNoTracking().ToListAsync();
     }
@@ -62,7 +62,7 @@ public abstract class GenericRepository<T> : IGenericRepository<T>
         return entity;
     }
 
-    public async Task<T> GetById(int id)
+    public virtual async Task<T> GetById(int id)
     {
         return await LibraryDbContext.Set<T>().FindAsync(id);
     }

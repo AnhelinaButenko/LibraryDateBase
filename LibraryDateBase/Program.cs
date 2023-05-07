@@ -8,23 +8,25 @@ namespace LibraryDateBase;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         AuthorRepository authorRepository = new AuthorRepository(new LibraryDbContext());
 
-        authorRepository.Add(new Author { FullName = "Asdfg Teru Pomft", CreatedDate = new DateTime(1999, 01, 13), ModifiedDate = DateTime.UtcNow });
-        authorRepository.Remove(new Author { Id = 6, ModifiedDate = DateTime.UtcNow });
-        authorRepository.Update(1, new Author { FullName = "Boytr Mhiny Oeryo" });
-        var authorGetById = authorRepository.GetbyId(2);
+        await authorRepository.Add(new Author { FullName = "Asdfg Teru Pomft", CreatedDate = new DateTime(1999, 01, 13), ModifiedDate = DateTime.UtcNow });
+        await authorRepository.Remove(new Author { Id = 6, ModifiedDate = DateTime.UtcNow });
+        await authorRepository.Update(1, new Author { FullName = "Boytr Mhiny Oeryo" });
+        Author authorGetById = await authorRepository.GetById(6);
 
-        var authors = authorRepository.GetAll();
-        foreach (var author in authors)
+        List<Author> authors = await authorRepository.GetAll();
+        foreach (Author author in authors)
         {
             Console.WriteLine(
                 $"Автор:{author.FullName}" +
                 $"CreatedDate:{author.CreatedDate}" +
                 $"CreatedDate:{author.ModifiedDate}.");
         };
+
+
     }
 }
 
